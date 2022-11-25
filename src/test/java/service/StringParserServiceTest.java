@@ -34,4 +34,13 @@ public class StringParserServiceTest {
 
         assertEquals(expected, stringParser.parseString(inputNullInString));
     }
+
+    @Test
+    void parseString_IGNORING_NEGATIVE_NUMBERS() {
+        String inputNegativeString = "1, -1, 2, 3";
+        List<Integer> expected = List.of(1,2,3);
+        StringParserService stringParser = new StringParserService();
+
+        assertEquals(expected, stringParser.parseString(inputNegativeString));
+    }
 }

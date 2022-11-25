@@ -10,7 +10,10 @@ public class StringParserService {
         List<Integer> numbers = new ArrayList<>();
         for (var x : splitString) {
             if (x.matches("-?\\d+(\\.\\d+)?")) {
-                numbers.add(Integer.parseInt(x));
+                int number = Integer.parseInt(x);
+                if (number >= 0) {
+                    numbers.add(number);
+                }
             }
         }
         return numbers;
