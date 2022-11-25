@@ -11,8 +11,6 @@ public class StringParserService {
         for (var x : splitString) {
             if (x.matches("-?\\d+(\\.\\d+)?")) {
                 numbers.add(Integer.parseInt(x));
-            } else {
-                numbers.add(0);
             }
         }
         return numbers;

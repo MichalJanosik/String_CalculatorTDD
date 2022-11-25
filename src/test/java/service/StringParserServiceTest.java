@@ -29,7 +29,7 @@ public class StringParserServiceTest {
     @Test
     void parseString_IGNORING_NON_NUMBERS() {
         String inputNullInString = "1,2,null,3";
-        List<Integer> expected = List.of(1,2,0,3);
+        List<Integer> expected = List.of(1,2,3);
         StringParserService stringParser = new StringParserService();
 
         assertEquals(expected, stringParser.parseString(inputNullInString));
