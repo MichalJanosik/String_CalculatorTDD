@@ -8,14 +8,17 @@ public class StringParserService {
     public List<Integer> parseString(String input) {
         String[] splitString = input.split("[,:;_/ ]");
         List<Integer> numbers = new ArrayList<>();
+        NumberValidatorService numberValidator = new NumberValidatorService();
+
         for (var x : splitString) {
-            if (x.matches("-?\\d+(\\.\\d+)?")) {
+            if (numberValidator.stringIsNumber(x)) {
                 int number = Integer.parseInt(x);
-                if ((number >= 0) && (number <= 100)) {
+                if (numberValidator.numberIsValid(number)) {
                     numbers.add(number);
                 }
             }
         }
+
         return numbers;
     }
 }
