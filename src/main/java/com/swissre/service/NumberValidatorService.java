@@ -9,4 +9,8 @@ public class NumberValidatorService {
         }
         return input.matches("-?\\d+(\\.\\d+)?");
     }
+
+    public boolean numberIsValid(int number) {
+        return (number >= 0) && (number <= 100);
+    }
 }

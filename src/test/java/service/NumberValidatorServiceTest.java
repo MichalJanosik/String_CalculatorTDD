@@ -1,6 +1,8 @@
 package service;
 
 import com.swissre.service.NumberValidatorService;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -36,5 +38,24 @@ public class NumberValidatorServiceTest {
         assertFalse(new NumberValidatorService().stringIsNumber(input));
     }
 
+    @Test
+    void numberIsValid_OK() {
+        int number = 1;
 
+        assertTrue(new NumberValidatorService().numberIsValid(number));
+    }
+
+    @Test
+    void numberIsValid_NEGATIVE_NUMBER() {
+        int number = -1;
+
+        assertFalse(new NumberValidatorService().numberIsValid(number));
+    }
+
+    @Test
+    void numberIsValid_GREATER_THAN_100() {
+        int number = 101;
+
+        assertFalse(new NumberValidatorService().numberIsValid(number));
+    }
 }
