@@ -43,4 +43,14 @@ public class StringParserServiceTest {
 
         assertEquals(expected, stringParser.parseString(inputNegativeString));
     }
+
+    @Test
+    void parseString_IGNORING_GREATER_THAN_100() {
+        String inputGreaterThan100 = "1, 2, 101, 3";
+        List<Integer> expexted = List.of(1,2,3);
+
+        assertEquals(expexted, new StringParserService().parseString(inputGreaterThan100));
+    }
+
+
 }
