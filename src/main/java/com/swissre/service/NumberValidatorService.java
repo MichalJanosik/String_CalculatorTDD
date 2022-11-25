@@ -10,7 +10,10 @@ public class NumberValidatorService {
         return input.matches("-?\\d+(\\.\\d+)?");
     }
 
-    public boolean numberIsValid(int number) {
-        return (number >= 0) && (number <= 100);
+    public boolean numberIsValid(int number) throws Exception {
+        if (number < 0) {
+            throw new Exception("Does not support negative numbers");
+        }
+        return number <= 100;
     }
 }

@@ -9,9 +9,11 @@ import java.util.Objects;
 public class StringCalculatorApp {
 
     public static void main(String[] args) {
-        String input = "1,2,3";
+        String input = "1 -2 3";
+        int result;
+        result = addString(input);
         System.out.printf("Input string: %s%n", input);
-        System.out.printf("Output integer: %d", addString(input));
+        System.out.printf("Output integer: %d", result);
     }
 
     public static int addString(String input) {
@@ -19,7 +21,14 @@ public class StringCalculatorApp {
             return 0;
         }
 
-        List<Integer> numbers = new StringParserService().parseString(input);
+        List<Integer> numbers = null;
+
+        try {
+            numbers = new StringParserService().parseString(input);
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+            System.exit(0);
+        }
 
         return new CalculatingService().getSum(numbers);
     }

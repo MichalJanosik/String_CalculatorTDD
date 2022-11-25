@@ -1,11 +1,12 @@
 package service;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.swissre.service.StringParserService;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class StringParserServiceTest {
 
@@ -17,7 +18,7 @@ public class StringParserServiceTest {
     }
 
     @Test
-    void parseString_VARIOUS_DELIMITERS_RETUNS_LIST_OF_INTEGERS() {
+    void parseString_VARIOUS_DELIMITERS_RETUNS_LIST_OF_INTEGERS() throws Exception {
         String inputComa = "1,2,3";
         String inputColon = "1:2:3";
         String inputSemiColon = "1;2;3";
@@ -35,7 +36,7 @@ public class StringParserServiceTest {
     }
 
     @Test
-    void parseString_IGNORING_NON_NUMBERS() {
+    void parseString_IGNORING_NON_NUMBERS() throws Exception {
         String inputNullInString = "1,2,null,3";
         List<Integer> expected = List.of(1,2,3);
 
@@ -43,20 +44,23 @@ public class StringParserServiceTest {
     }
 
     @Test
-    void parseString_IGNORING_NEGATIVE_NUMBERS() {
+    void parseString_NEGATIVE_NUMBERS_THROW_EXCEPTION() throws Exception {
         String inputNegativeString = "1, -1, 2, 3";
-        List<Integer> expected = List.of(1,2,3);
+        Exception exception = assertThrows(
+                Exception.class, () -> stringParser.parseString(inputNegativeString)
+        );
 
-        assertEquals(expected, stringParser.parseString(inputNegativeString));
+        String expectedMessage = "Does not support negative numbers";
+        String actualMessage = exception.getMessage();
+
+        assertTrue(expectedMessage.contains(actualMessage));
     }
 
     @Test
-    void parseString_IGNORING_GREATER_THAN_100() {
+    void parseString_IGNORING_GREATER_THAN_100() throws Exception {
         String inputGreaterThan100 = "1, 2, 101, 3";
-        List<Integer> expexted = List.of(1,2,3);
+        List<Integer> expected = List.of(1,2,3);
 
-        assertEquals(expexted, stringParser.parseString(inputGreaterThan100));
+        assertEquals(expected, stringParser.parseString(inputGreaterThan100));
     }
-
-
 }
