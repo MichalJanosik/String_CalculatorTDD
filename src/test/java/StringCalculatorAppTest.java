@@ -14,4 +14,12 @@ public class StringCalculatorAppTest {
     void addString_NULL_RETURN_ZERO() {
         assertEquals(0, StringCalculatorApp.addString(null));
     }
+
+    @Test
+    void addString_OK() {
+        String input = "1,2,3";
+        int expected = 6;
+
+        assertEquals(expected, StringCalculatorApp.addString(input));
+    }
 }
