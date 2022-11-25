@@ -1,6 +1,7 @@
 package service;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import com.swissre.service.StringParserService;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
