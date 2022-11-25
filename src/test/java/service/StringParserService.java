@@ -9,7 +9,11 @@ public class StringParserService {
         String[] splitString = input.split("[,:;_/ ]");
         List<Integer> numbers = new ArrayList<>();
         for (var x : splitString) {
-            numbers.add(Integer.parseInt(x));
+            if (x.matches("-?\\d+(\\.\\d+)?")) {
+                numbers.add(Integer.parseInt(x));
+            } else {
+                numbers.add(0);
+            }
         }
         return numbers;
     }

@@ -3,7 +3,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class StringParserServiceTest {
@@ -16,7 +15,7 @@ public class StringParserServiceTest {
         String inputUnderscore = "1_2_3";
         String inputFwdSlash = "1/2/3";
         String inputSpace = "1 2 3";
-        List<Integer> expected = new ArrayList<>(List.of(1,2,3));
+        List<Integer> expected = List.of(1,2,3);
         StringParserService stringParser = new StringParserService();
 
         assertEquals(expected, stringParser.parseString(inputComa));
@@ -25,5 +24,14 @@ public class StringParserServiceTest {
         assertEquals(expected, stringParser.parseString(inputUnderscore));
         assertEquals(expected, stringParser.parseString(inputFwdSlash));
         assertEquals(expected, stringParser.parseString(inputSpace));
+    }
+
+    @Test
+    void parseString_IGNORING_NON_NUMBERS() {
+        String inputNullInString = "1,2,null,3";
+        List<Integer> expected = List.of(1,2,0,3);
+        StringParserService stringParser = new StringParserService();
+
+        assertEquals(expected, stringParser.parseString(inputNullInString));
     }
 }
