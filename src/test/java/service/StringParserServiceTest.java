@@ -2,11 +2,19 @@ package service;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.swissre.service.StringParserService;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
 public class StringParserServiceTest {
+
+    static StringParserService stringParser;
+
+    @BeforeAll
+    static void initialSetup() {
+        stringParser = new StringParserService();
+    }
 
     @Test
     void parseString_VARIOUS_DELIMITERS_RETUNS_LIST_OF_INTEGERS() {
@@ -17,7 +25,6 @@ public class StringParserServiceTest {
         String inputFwdSlash = "1/2/3";
         String inputSpace = "1 2 3";
         List<Integer> expected = List.of(1,2,3);
-        StringParserService stringParser = new StringParserService();
 
         assertEquals(expected, stringParser.parseString(inputComa));
         assertEquals(expected, stringParser.parseString(inputColon));
@@ -31,7 +38,6 @@ public class StringParserServiceTest {
     void parseString_IGNORING_NON_NUMBERS() {
         String inputNullInString = "1,2,null,3";
         List<Integer> expected = List.of(1,2,3);
-        StringParserService stringParser = new StringParserService();
 
         assertEquals(expected, stringParser.parseString(inputNullInString));
     }
@@ -40,7 +46,6 @@ public class StringParserServiceTest {
     void parseString_IGNORING_NEGATIVE_NUMBERS() {
         String inputNegativeString = "1, -1, 2, 3";
         List<Integer> expected = List.of(1,2,3);
-        StringParserService stringParser = new StringParserService();
 
         assertEquals(expected, stringParser.parseString(inputNegativeString));
     }
@@ -50,7 +55,7 @@ public class StringParserServiceTest {
         String inputGreaterThan100 = "1, 2, 101, 3";
         List<Integer> expexted = List.of(1,2,3);
 
-        assertEquals(expexted, new StringParserService().parseString(inputGreaterThan100));
+        assertEquals(expexted, stringParser.parseString(inputGreaterThan100));
     }
 
 
