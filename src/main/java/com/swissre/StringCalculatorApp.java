@@ -1,6 +1,6 @@
 package com.swissre;
 
-public class Main {
+public class StringCalculatorApp {
 
     public static void main(String[] args) {
 
