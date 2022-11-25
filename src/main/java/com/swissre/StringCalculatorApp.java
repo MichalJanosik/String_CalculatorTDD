@@ -9,11 +9,11 @@ import java.util.Objects;
 public class StringCalculatorApp {
 
     public static void main(String[] args) {
-        String input = "1 -2 3";
-        int result;
-        result = addString(input);
+        String input = "1,2,3,101";
+        String inputNegat = "1 -2 3";
         System.out.printf("Input string: %s%n", input);
-        System.out.printf("Output integer: %d", result);
+        System.out.printf("Output integer: %d", addString(input));
+        System.out.println(addString(inputNegat));
     }
 
     public static int addString(String input) {
