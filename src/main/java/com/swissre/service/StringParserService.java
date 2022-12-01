@@ -5,7 +5,7 @@ import java.util.List;
 
 public class StringParserService {
 
-    public List<Integer> parseString(String input) throws Exception {
+    public List<Integer> parseString(String input) {
         String[] splitString = input.split("[,:;_/ ]");
         List<Integer> numbers = new ArrayList<>();
         NumberValidatorService numberValidator = new NumberValidatorService();
