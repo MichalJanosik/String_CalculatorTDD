@@ -12,7 +12,7 @@ public class StringCalculatorApp {
         String input = "1,2,3,101";
         String inputNegat = "1 -2 3";
         System.out.printf("Input string: %s%n", input);
-        System.out.printf("Output integer: %d", addString(input));
+        System.out.printf("Output integer: %d%n", addString(input));
         System.out.println(addString(inputNegat));
     }
 

@@ -10,9 +10,9 @@ public class NumberValidatorService {
         return input.matches("-?\\d+(\\.\\d+)?");
     }
 
-    public boolean numberIsValid(int number) throws Exception {
+    public boolean numberIsValid(int number) {
         if (number < 0) {
-            throw new Exception("Does not support negative numbers");
+            throw new RuntimeException("Does not support negative numbers");
         }
         return number <= 100;
     }
